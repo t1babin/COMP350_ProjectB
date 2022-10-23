@@ -3,6 +3,13 @@
 //Modified by Tom and Tim
 //kernel.c
 
+void printstring(char*);
+
+void main(){
+        printstring("Hello World\0");
+        while(1);
+}
+
 void printstring(char* letters){
 
 	int startVidMem = 0xb800;
@@ -17,9 +24,4 @@ void printstring(char* letters){
 		//advance letters pointer
 		letters++;
 	}
-}
-
-void main(){
-	printstring("Hello World\0");
-	while(1);
 }
