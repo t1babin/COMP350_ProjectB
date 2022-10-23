@@ -1,13 +1,13 @@
 
 //Isaiah's Operating System Kernel
+//Modified by Tom and Tim
 //kernel.c
 
-void main(){
+void printstring(char* letters){
 
 	int startVidMem = 0xb800;
 	int vidMemOffset = 0x0;
 	int white = 0x7;
-	char* letters = "Hello World\0";
 
 	while(*letters != 0x0) {
 		putInMemory(startVidMem, vidMemOffset, *letters);
@@ -17,6 +17,9 @@ void main(){
 		//advance letters pointer
 		letters++;
 	}
+}
 
+void main(){
+	printstring("Hello World\0");
 	while(1);
 }
