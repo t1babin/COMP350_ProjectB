@@ -6,21 +6,22 @@
 void printstring(char*);
 
 void main(){
-        printstring("Hello World\0");
+        printstring("Hello World");
         while(1);
 }
 
 void printstring(char* letters){
 
-	int startVidMem = 0xb800;
-	int vidMemOffset = 0x0;
-	int white = 0x7;
+//	int startVidMem = 0xb800;
+//	int vidMemOffset = 0x0;
+//	int white = 0;
 
 	while(*letters != 0x0) {
-		putInMemory(startVidMem, vidMemOffset, *letters);
-		vidMemOffset++;
-		putInMemory(startVidMem, vidMemOffset, white);
-		vidMemOffset++;
+		//putInMemory(startVidMem, vidMemOffset, *letters);
+		//vidMemOffset++;
+		//putInMemory(startVidMem, vidMemOffset, white);
+		//vidMemOffset++;
+		interrupt(0x10,0xe*256+*letters,0,0,0);
 		//advance letters pointer
 		letters++;
 	}
