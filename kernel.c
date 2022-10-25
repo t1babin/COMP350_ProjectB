@@ -35,13 +35,17 @@ void readstring(char output[]){
 	while(output[i] != 0xd){
 		i++;
 		output[i] = interrupt(0x16,0,0,0,0);
-		if(output[i] == 0xa){
+		if(output[i] == 0x8 && i>=1){
 			i--;
-			output[i] = 32;
+			output[i] = 0x20;
+			printChar(0x8);
+			printChar(output[i]);
+			printChar(0x8);
+			i--;
+		}
+		else if (output[i] != 0x8){
 			interrupt(0x10,0xe*256+output[i],0,0,0);
 		}
-		else
-			interrupt(0x10,0xe*256+output[i],0,0,0);
 	}
 	i++;
 	output[i] = 0xa;
@@ -54,4 +58,3 @@ void readstring(char output[]){
 void handleInterrupt21(int AX, int BX, int CX, int DX){
 	printChar('T');
 }
-
